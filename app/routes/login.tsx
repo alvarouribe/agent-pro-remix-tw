@@ -7,7 +7,7 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export default function Index() {
+export default function Login() {
   return (
     <div className="flex h-screen items-center justify-center">
       <section className="w-1/2 h-screen">
