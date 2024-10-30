@@ -1,4 +1,5 @@
-import type { MetaFunction } from "@remix-run/node";
+import type { ActionFunctionArgs, MetaFunction } from "@remix-run/node";
+import { Form, redirect } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -7,12 +8,30 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+export const loader = () => {
+  console.log(`## Login loader ## ${new Date()}`);
+  return null;
+}
+
+export const action = async ({ request }: ActionFunctionArgs) => {
+  console.log(`## Action ## ${new Date()}`);
+  const formData = await request.formData();
+  const email = formData.get("email");
+  const password = formData.get("password");
+  const intent = formData.get("intent");
+  console.log(`Email: ${email}, Password: ${password} Intent: ${intent}`);
+  // Try to login the user
+  // If the user is logged in, redirect to the listings/live page
+  return redirect("/listings/live");
+  // If the user is not logged in, redirect to the login page
+}
+
 export default function Login() {
   return (
     <div className="flex h-screen items-center justify-center">
       <section className="w-1/2 h-screen flex items-center justify-center">
 
-        <form action="" className="w-1/2 flex flex-col gap-2">
+      <Form method="POST" className="w-1/2 flex flex-col gap-2">
           <h1 className="text-2xl mb-6 font-bold">Login</h1>
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -38,6 +57,8 @@ export default function Login() {
           </div>
           <button
             type="submit"
+            name="intent"
+            value="login"
             className="w-full p-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
           >
             Log in
@@ -52,7 +73,7 @@ export default function Login() {
               Not registered yet? <a className="text-indigo-600 font-semibold" href="#">Create an account</a>
             </p>
           </div>
-        </form>
+        </Form>
 
       </section>
 

@@ -7,6 +7,11 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+export const loader = () => {
+  console.log(`## Listings/live loader ## ${new Date()}`);
+  return null;
+}
+
 export default function Live() {
   return (
     <div className="flex h-screen items-center justify-center">

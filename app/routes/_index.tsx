@@ -1,4 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
+import { redirect } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -9,7 +10,12 @@ export const meta: MetaFunction = () => {
 
 export const loader = () => {
   console.log(`## Index loader ## ${new Date()}`);
-  return null;
+  const isAuthenticated = false;
+  if (isAuthenticated) {
+    throw redirect("/listings/live");
+  } else {
+    throw redirect("/login");
+  }
 }
 
 export default function Index() {
