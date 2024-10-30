@@ -22,6 +22,11 @@ export const links: LinksFunction = () => [
   },
 ];
 
+export const loader = () => {
+  console.log(`## Root loader ## ${new Date()}`);
+  return null;
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
