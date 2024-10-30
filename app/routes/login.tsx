@@ -13,7 +13,7 @@ export default function Login() {
       <section className="w-1/2 h-screen flex items-center justify-center">
 
         <form action="" className="w-1/2 flex flex-col gap-2">
-          <h1 className="text-2xl">Login</h1>
+          <h1 className="text-2xl mb-6 font-bold">Login</h1>
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
               Email
