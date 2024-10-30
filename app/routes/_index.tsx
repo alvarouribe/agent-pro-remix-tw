@@ -8,12 +8,22 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+export const ErrorBoundary = () => {
+  return (
+    <div className="flex flex-col gap-5 h-screen items-center justify-center">
+      <h1>Error Something went wrong</h1>
+    </div>
+  );
+}
+
 export const loader = () => {
   console.log(`## Index loader ## ${new Date()}`);
   const isAuthenticated = false;
   if (isAuthenticated) {
     throw redirect("/listings/live");
   } else {
+    // throw new Error('DIED'); // This will trigger the ErrorBoundary
+    // throw new Response(null); // This will trigger the ErrorBoundary
     throw redirect("/login");
   }
 }
