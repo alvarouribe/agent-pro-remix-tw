@@ -1,4 +1,5 @@
-import type { MetaFunction } from "@remix-run/node";
+import { json, type MetaFunction } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -9,13 +10,17 @@ export const meta: MetaFunction = () => {
 
 export const loader = () => {
   console.log(`## Listings/live loader ## ${new Date()}`);
-  return null;
+  return json({ message: "Listings live" });
 }
 
 export default function Live() {
+  const data = useLoaderData<typeof loader>();
+
+
   return (
-    <div className="flex h-screen items-center justify-center">
-      <h1>Listings live</h1>
+    <div className="flex flex-col gap-3 h-screen items-center justify-center">
+      <h1 className="text-2xl font-semibold">Listings live</h1>
+      <h2 className="text-xl">Message: `{data.message}`</h2>
     </div>
   );
 }
