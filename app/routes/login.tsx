@@ -13,7 +13,8 @@ export default function Index() {
       <section className="w-1/2 h-screen">
         <h1>Login</h1>
       </section>
-      <section className="w-1/2 h-screen border flex flex-col items-center justify-center text-center gap-2">
+
+      <section className="w-1/2 h-screen flex flex-col items-center justify-center text-center gap-2 bg-gray-100">
         <img
           src="/assets/house-login.png"
           alt="Real Estate House"
